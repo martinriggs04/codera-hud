@@ -1,0 +1,97 @@
+.dive-hud {
+    position: absolute;
+    bottom: 2.5vh;
+    right: 1.5vw;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    gap: 14px;
+}
+
+.dive-hud__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 62px;
+}
+
+.dive-hud__value {
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-family: "Barlow", sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    font-style: italic;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(40, 40, 40, 0.9), 0 0 6px rgba(40, 40, 40, 0.7);
+}
+
+.dive-hud__label {
+    color: rgba(255, 255, 255, 0.55);
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(40, 40, 40, 0.9), 0 0 6px rgba(40, 40, 40, 0.7);
+}
+
+.dive-hud__divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.dive-hud__stat--tank {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.dive-hud__tank-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.dive-hud__tank-max {
+    color: rgba(255, 255, 255, 0.55);
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 3px rgba(40, 40, 40, 0.9), 0 0 6px rgba(40, 40, 40, 0.7);
+}
+
+.dive-hud__tank-track {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: 5px;
+    height: 34px;
+    overflow: hidden;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dive-hud__tank-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background: #ffffff;
+    transition: height 0.2s linear, background-color 0.2s linear;
+}
+
+.dive-hud__tank-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 40px;
+}

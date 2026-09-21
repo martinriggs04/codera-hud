@@ -1,0 +1,134 @@
+/* Message log and command-suggestion dropdown that float above the
+   chat-input-badge (see player.css) once the player-hud row is in the
+   .chat-open state. */
+
+.chat-log {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 46px);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 320px;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 600ms ease;
+}
+
+/* The whole conversation hides together as one block, 25s after the last
+   message (see armHideTimer in web/js/chat.js) - not line by line. */
+.chat-log.is-idle {
+    opacity: 0;
+}
+
+.chat-log__row {
+    padding: 4px 10px;
+    border-radius: 0;
+    background: rgba(15, 15, 15, 0.68);
+    color: #fff;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    word-break: break-word;
+}
+
+.chat-log__author {
+    font-weight: 800;
+}
+
+.chat-suggestions {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 8px);
+    display: none;
+    flex-direction: column;
+    width: 320px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+    background: rgba(12, 12, 15, 0.92);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.chat-suggestions.has-items {
+    display: flex;
+}
+
+.chat-suggestions__row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.chat-suggestions__row:last-child {
+    border-bottom: none;
+}
+
+.chat-suggestions__row.is-active {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.chat-suggestions__name {
+    flex: 0 0 auto;
+    color: #4fd1ff;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: lowercase;
+}
+
+.chat-suggestions__help {
+    flex: 1 1 auto;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 12px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-suggestions__row--header {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.chat-suggestions__param {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 10px 5px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+.chat-suggestions__param:last-child {
+    border-bottom: none;
+}
+
+.chat-suggestions__param.is-active {
+    background: rgba(79, 209, 255, 0.12);
+}
+
+.chat-suggestions__param-name {
+    flex: 0 0 auto;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.chat-suggestions__param.is-active .chat-suggestions__param-name {
+    color: #4fd1ff;
+}
+
+.chat-suggestions__param-help {
+    flex: 1 1 auto;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 11.5px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
