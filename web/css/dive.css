@@ -6,6 +6,14 @@
     display: none;
     align-items: center;
     gap: 14px;
+    transition: right 350ms ease;
+}
+
+/* While in a vehicle, slide horizontally next to the speedometer - matches
+   .vehicle-hud's geometry (right: calc(2vw + 35px), 200px circle scaled
+   0.88 from a bottom-right origin), same bottom position, no vertical move. */
+.dive-hud.in-vehicle {
+    right: calc(2vw + 241px);
 }
 
 .dive-hud__stat {

@@ -81,7 +81,8 @@ CreateThread(function()
                 depth = depth,
                 estSeconds = estSeconds,
                 tank = math.floor(tankValue + 0.5),
-                tankMax = TANK_MAX
+                tankMax = TANK_MAX,
+                inVehicle = IsPedInAnyVehicle(ped, false)
             })
         elseif visible then
             SendNUIMessage({ action = 'diveHudUpdate', visible = false })

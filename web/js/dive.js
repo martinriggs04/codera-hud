@@ -35,6 +35,7 @@
         }
 
         elements.hud.style.display = 'flex';
+        elements.hud.classList.toggle('in-vehicle', Boolean(data.inVehicle));
         elements.time.textContent = formatTime(data.estSeconds);
         elements.depth.textContent = Number(data.depth || 0).toFixed(1);
 
