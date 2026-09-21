@@ -1,0 +1,181 @@
+.vehicle-menu {
+    position: absolute;
+    left: 50%;
+    bottom: 8vh;
+    z-index: 200;
+    transform: translate(-50%, 40px);
+    opacity: 0;
+    font-family: "Barlow Semi Condensed", "Barlow", sans-serif;
+    transition: transform 280ms ease, opacity 280ms ease;
+}
+
+.vehicle-menu[hidden] {
+    display: none;
+}
+
+/* Appear: slides up from below while fading in. Disappear: slides back
+   down while fading out (see vehiclemenu.js, which removes .is-open first
+   and only sets [hidden] once this transition has finished). */
+.vehicle-menu.is-open {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+.vehicle-menu__backdrop {
+    opacity: 0;
+    transition: opacity 280ms ease;
+}
+
+.vehicle-menu__backdrop.is-open {
+    opacity: 1;
+}
+
+/* Hide every other bottom-of-screen HUD element while the vehicle menu is
+   open - mic/health/armor/needs, the swim-stamina badge (both live inside
+   #player-hud), stamina/oxygen, the speedometer and the diving panel.
+   !important because each of those is toggled via inline style.display by
+   their own scripts, which would otherwise win over a plain class rule. */
+body.vehicle-menu-open #player-hud,
+body.vehicle-menu-open .center-status,
+body.vehicle-menu-open .vehicle-hud,
+body.vehicle-menu-open #dive-hud {
+    display: none !important;
+}
+
+.vehicle-menu__backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32vh;
+    z-index: 199;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(45, 212, 191, 0.85) 0%, rgba(45, 212, 191, 0) 100%);
+}
+
+.vehicle-menu__columns {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+}
+
+.vehicle-menu__column {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 62px;
+}
+
+.vehicle-menu__column-title {
+    padding: 3px 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    background: rgba(10, 12, 16, 0.55);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.vehicle-menu__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+}
+
+.vehicle-menu__grid--seats {
+    grid-template-columns: 1fr;
+}
+
+.vm-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 60px;
+    height: 44px;
+    padding: 4px 2px;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: background-color 120ms ease, color 120ms ease;
+}
+
+.vm-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.vm-btn i,
+.vm-btn svg {
+    font-size: 14px;
+}
+
+.vm-btn__label {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.vm-btn.is-active {
+    background: #4fd1c5;
+    color: #06231f;
+}
+
+.vm-btn.is-warning {
+    color: #ffb020;
+}
+
+.vm-btn.is-warning.is-active {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.vm-btn.is-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.vehicle-menu__close {
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    display: flex;
+    align-items: stretch;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+
+.vehicle-menu__close-key {
+    padding: 5px 10px;
+    background: #111214;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.vehicle-menu__close-label {
+    display: flex;
+    align-items: center;
+    padding: 5px 14px;
+    color: #111214;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}

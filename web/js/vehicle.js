@@ -3,6 +3,7 @@
 
     const elements = {
         hud: document.getElementById('vehicle-hud'),
+        speedometer: document.querySelector('#vehicle-hud .speedometer'),
         rpmProgress: document.getElementById('rpm-progress-path'),
         fuel: document.getElementById('fuel-path'),
         fuelBg: document.getElementById('fuel-bg'),
@@ -137,10 +138,17 @@
             updateEngine(engineHealth);
             lastRendered.engine = engineHealth;
         }
+
+        const engineOn = Boolean(data.engineOn);
+        if (engineOn !== lastRendered.engineOn) {
+            elements.speedometer.classList.toggle('engine-off', !engineOn);
+            lastRendered.engineOn = engineOn;
+        }
     };
 
     const hideVehicleHud = () => {
         elements.hud.style.display = 'none';
+        elements.speedometer.classList.remove('engine-off');
         hideEngine();
         lastEngineHealth = 1000;
         lastRendered = {};

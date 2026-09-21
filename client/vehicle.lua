@@ -52,6 +52,38 @@ RegisterNetEvent('seatbelt:client:ToggleSeatbelt', function()
     forceRefresh = true
 end)
 
+local engineToggleCommand = (Config.Commands and Config.Commands.engineToggle) or 'coderahud_enginetoggle'
+
+RegisterCommand(engineToggleCommand, function()
+    local ped = PlayerPedId()
+    if not IsPedInAnyVehicle(ped, false) then return end
+
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if GetPedInVehicleSeat(vehicle, -1) ~= ped then return end
+
+    SetVehicleEngineOn(vehicle, not GetIsVehicleEngineRunning(vehicle), false, true)
+    forceRefresh = true
+end, false)
+
+RegisterKeyMapping(engineToggleCommand, 'Start/stop the vehicle engine (driver only)', 'keyboard', Config.EngineToggleKey or 'g')
+
+local lockToggleCommand = (Config.Commands and Config.Commands.lockToggle) or 'coderahud_locktoggle'
+
+RegisterCommand(lockToggleCommand, function()
+    local ped = PlayerPedId()
+    if not IsPedInAnyVehicle(ped, false) then return end
+
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if GetPedInVehicleSeat(vehicle, -1) ~= ped then return end
+
+    SetVehicleDoorsLocked(vehicle, isLocked(vehicle) and 1 or 2) -- 1 = unlocked, 2 = locked
+    forceRefresh = true
+end, false)
+
+RegisterKeyMapping(lockToggleCommand, 'Lock/unlock the vehicle (driver only)', 'keyboard', Config.LockToggleKey or 'l')
+
+local wasInVehicle = false
+
 CreateThread(function()
     while true do
         local ped = PlayerPedId()
@@ -59,6 +91,11 @@ CreateThread(function()
 
         if vehicle ~= 0 then
             hiddenSent = false
+
+            if not wasInVehicle then
+                wasInVehicle = true
+                SendNUIMessage({ action = 'vehicleHintsShow' })
+            end
 
             local _, lightsOn, highbeamsOn = GetVehicleLightsState(vehicle)
 
@@ -74,7 +111,8 @@ CreateThread(function()
                 lights = (lightsOn == 1 or highbeamsOn == 1),
                 seatbelt = getSeatbeltState(),
                 locked = isLocked(vehicle),
-                engine = math.floor(math.max(GetVehicleEngineHealth(vehicle), 0))
+                engine = math.floor(math.max(GetVehicleEngineHealth(vehicle), 0)),
+                engineOn = GetIsVehicleEngineRunning(vehicle)
             }
 
             if forceRefresh or changed(data, cache) then
@@ -85,6 +123,8 @@ CreateThread(function()
 
             Wait(Config.Intervals.vehicle)
         else
+            wasInVehicle = false
+
             if not hiddenSent then
                 hiddenSent = true
                 cache = nil

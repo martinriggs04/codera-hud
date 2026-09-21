@@ -17,6 +17,7 @@ client_scripts {
     'client/chat.lua',
     'client/diving.lua',
     'client/vehicle.lua',
+    'client/vehiclemenu.lua',
     'client/minimap.lua',
     'client/zoom.lua'
 }

@@ -10,11 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow+Semi+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css?v=11">
     <link rel="stylesheet" href="css/player.css?v=24">
-    <link rel="stylesheet" href="css/vehicle.css?v=30">
+    <link rel="stylesheet" href="css/vehicle.css?v=36">
     <link rel="stylesheet" href="css/minimap.css?v=58">
     <link rel="stylesheet" href="css/settings.css?v=1">
     <link rel="stylesheet" href="css/chat.css?v=6">
-    <link rel="stylesheet" href="css/dive.css?v=7">
+    <link rel="stylesheet" href="css/dive.css?v=8">
+    <link rel="stylesheet" href="css/vehiclemenu.css?v=6">
+    <link rel="stylesheet" href="css/vehiclehints.css?v=4">
 </head>
 <body>
     <svg width="0" height="0" aria-hidden="true" focusable="false">
@@ -182,6 +184,33 @@
             <div class="crosshair__dot"></div>
         </div>
 
+        <div class="vehicle-hints" id="vehicle-hints" aria-label="Vehicle control hints" hidden>
+            <div class="vehicle-hints__item">
+                <span class="vehicle-hints__key">G</span>
+                <span class="vehicle-hints__label" id="vehicle-hints-engine-label">START ENGINE</span>
+            </div>
+            <span class="vehicle-hints__sep">/</span>
+            <div class="vehicle-hints__item">
+                <span class="vehicle-hints__key">H</span>
+                <span class="vehicle-hints__label">HEADLIGHTS</span>
+            </div>
+            <span class="vehicle-hints__sep">/</span>
+            <div class="vehicle-hints__item">
+                <span class="vehicle-hints__key">E</span>
+                <span class="vehicle-hints__label">HORN</span>
+            </div>
+            <span class="vehicle-hints__sep">/</span>
+            <div class="vehicle-hints__item">
+                <span class="vehicle-hints__key">L</span>
+                <span class="vehicle-hints__label" id="vehicle-hints-lock-label">LOCK</span>
+            </div>
+            <span class="vehicle-hints__sep">/</span>
+            <div class="vehicle-hints__item">
+                <span class="vehicle-hints__key">F</span>
+                <span class="vehicle-hints__label">EXIT</span>
+            </div>
+        </div>
+
         <section class="vehicle-hud" id="vehicle-hud" aria-label="Vehicle status">
             <div class="speedometer">
                 <svg class="speedometer__gauges" viewBox="0 0 200 200">
@@ -341,6 +370,44 @@
 
         <div class="cinematic-bar cinematic-bar--top" id="cinematic-top"></div>
         <div class="cinematic-bar cinematic-bar--bottom" id="cinematic-bottom"></div>
+
+        <div class="vehicle-menu__backdrop" id="vehicle-menu-backdrop" aria-hidden="true" hidden></div>
+        <section class="vehicle-menu" id="vehicle-menu" aria-label="Vehicle control menu" hidden>
+            <div class="vehicle-menu__columns">
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">SEATS</div>
+                    <div class="vehicle-menu__grid vehicle-menu__grid--seats" id="vm-seats"></div>
+                </div>
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">AUXILIARY</div>
+                    <div class="vehicle-menu__grid" id="vm-aux"></div>
+                </div>
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">DOORS</div>
+                    <div class="vehicle-menu__grid" id="vm-doors"></div>
+                </div>
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">WINDOWS</div>
+                    <div class="vehicle-menu__grid" id="vm-windows"></div>
+                </div>
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">BODY</div>
+                    <div class="vehicle-menu__grid" id="vm-body"></div>
+                </div>
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">DRIVING</div>
+                    <div class="vehicle-menu__grid" id="vm-driving"></div>
+                </div>
+                <div class="vehicle-menu__column">
+                    <div class="vehicle-menu__column-title">EXTRAS</div>
+                    <div class="vehicle-menu__grid" id="vm-extras"></div>
+                </div>
+            </div>
+            <button type="button" class="vehicle-menu__close" id="vehicle-menu-close">
+                <span class="vehicle-menu__close-key">ESC</span>
+                <span class="vehicle-menu__close-label">CLOSE</span>
+            </button>
+        </section>
     </main>
 
 
@@ -436,10 +503,12 @@
     </div>
 
     <script src="js/player.js?v=9"></script>
-    <script src="js/vehicle.js?v=12"></script>
+    <script src="js/vehicle.js?v=14"></script>
     <script src="js/minimap.js?v=5"></script>
     <script src="js/settings.js?v=1"></script>
     <script src="js/chat.js?v=6"></script>
     <script src="js/dive.js?v=2"></script>
+    <script src="js/vehiclemenu.js?v=6"></script>
+    <script src="js/vehiclehints.js?v=3"></script>
 </body>
 </html>

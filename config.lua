@@ -40,12 +40,27 @@ Config.VoiceResource = 'auto'
 Config.Commands = {
     cinematic = 'cinematic',
     hudsettings = 'hudsettings', -- opens the personal HUD settings menu
-    chat = 'coderahud_chat' -- internal, opens the built-in chat (see client/chat.lua)
+    chat = 'coderahud_chat', -- internal, opens the built-in chat (see client/chat.lua)
+    vehicleMenu = 'coderahud_vehiclemenu', -- internal, opens the vehicle control menu
+    engineToggle = 'coderahud_enginetoggle', -- internal, starts/stops the engine (see client/vehicle.lua)
+    lockToggle = 'coderahud_locktoggle' -- internal, locks/unlocks the vehicle (see client/vehicle.lua)
 }
+
+-- Key that starts/stops the vehicle engine. Only works while sitting in the
+-- driver's seat.
+Config.EngineToggleKey = 'g'
+
+-- Key that locks/unlocks the vehicle. Only works while sitting in the
+-- driver's seat.
+Config.LockToggleKey = 'l'
 
 -- Key that opens the chat. codera-hud now provides its own chat (it replaces
 -- the stock 'chat' resource - stop/remove 'chat' from your server.cfg).
 Config.ChatKey = 't'
+
+-- Key that opens the vehicle control menu (seats, doors, windows, engine,
+-- lights, extras...). Only works while sitting in the driver's seat.
+Config.VehicleMenuKey = 'F6'
 
 -- Name shown in the footer of the /hudsettings menu ("<name> / PERSONAL SETTINGS").
 Config.SettingsBrand = 'CODERA HUD'

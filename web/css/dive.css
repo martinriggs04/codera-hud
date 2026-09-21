@@ -6,7 +6,14 @@
     display: none;
     align-items: center;
     gap: 14px;
-    transition: right 350ms ease;
+    transition: right 350ms ease, bottom 300ms ease;
+}
+
+/* The vehicle control hints bar sits in the same bottom-right corner
+   while it's up (see web/js/vehiclehints.js, which toggles this class on
+   <body>) - lift the dive panel above it so they don't overlap. */
+body.vehicle-hints-visible .dive-hud {
+    bottom: calc(2.5vh + 52px);
 }
 
 /* While in a vehicle, slide horizontally next to the speedometer - matches

@@ -9,6 +9,29 @@
     transform-origin: bottom right;
 }
 
+/* The slide/fade has to live on .speedometer, not #vehicle-hud itself:
+   the layout editor (web/js/settings.js, applyLayout()) writes directly to
+   #vehicle-hud's inline style.transform for drag-to-reposition, and an
+   inline style always wins over anything set here - so any transform
+   given to .vehicle-hud in this file gets silently overwritten and never
+   actually shows up. .speedometer is a plain child the editor never
+   touches, so it's free for us to animate. */
+.speedometer {
+    transform: translateX(0);
+    opacity: 1;
+    /* Fade only runs during the second half of the slide (160ms delay,
+       160ms duration, both ending together at the 320ms mark) - so the
+       first half is a pure position move, at full/zero opacity, making the
+       slide itself clearly visible instead of racing the fade. */
+    transition: transform 320ms ease, opacity 160ms ease 160ms;
+}
+
+.speedometer.engine-off {
+    transform: translateX(260px);
+    opacity: 0;
+    pointer-events: none;
+}
+
 .speedometer {
     position: relative;
     display: flex;
